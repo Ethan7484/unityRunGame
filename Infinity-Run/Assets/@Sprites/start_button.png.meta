@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: be5f70080b98bd34fb840dc09988c174
+guid: 5508b07480765354f907bab00cd84871
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1116507116414994308
-    second: building_01_0
+      213: -3500759553075992606
+    second: start_button_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: building_01_0
+      name: start_button_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 106
-        height: 83
+        width: 108
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4878c1f8e41ae7f00800000000000000
-      internalID: 1116507116414994308
+      spriteID: 2e7a9dafbbdca6fc0800000000000000
+      internalID: -3500759553075992606
       vertices: []
       indices: 
       edges: []
@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      start_button_0: -3500759553075992606
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
