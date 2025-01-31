@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 1275212875}
   - component: {fileID: 1275212874}
   - component: {fileID: 1275212873}
+  - component: {fileID: 1275212877}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -404,7 +405,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a916a0bade62f488fbbcb9ba6d2eed79, type: 2}
+  - {fileID: 2100000, guid: 237a3448d8ba040d5befc48ad9318ed9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -443,12 +444,26 @@ Transform:
   m_GameObject: {fileID: 1275212872}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: -4.83, z: 80}
+  m_LocalPosition: {x: 0.01, y: -4.59, z: 80}
   m_LocalScale: {x: 23.852167, y: 1.5613617, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1275212877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275212872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0907a9e695548759cce207f24dda3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 1
+  meshRenderer: {fileID: 1275212874}
 --- !u!1 &1841117217
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +476,7 @@ GameObject:
   - component: {fileID: 1841117220}
   - component: {fileID: 1841117219}
   - component: {fileID: 1841117218}
+  - component: {fileID: 1841117222}
   m_Layer: 0
   m_Name: Sky
   m_TagString: Untagged
@@ -552,12 +568,26 @@ Transform:
   m_GameObject: {fileID: 1841117217}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 0.3789, z: 100}
+  m_LocalPosition: {x: 0.07, y: -0.09, z: 100}
   m_LocalScale: {x: 23.835348, y: 6.430463, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1841117222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841117217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0907a9e695548759cce207f24dda3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.1
+  meshRenderer: {fileID: 1841117219}
 --- !u!1 &2145742122
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +600,7 @@ GameObject:
   - component: {fileID: 2145742125}
   - component: {fileID: 2145742124}
   - component: {fileID: 2145742123}
+  - component: {fileID: 2145742127}
   m_Layer: 0
   m_Name: Buildings
   m_TagString: Untagged
@@ -661,12 +692,26 @@ Transform:
   m_GameObject: {fileID: 2145742122}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0452, y: -3.16, z: 90}
+  m_LocalPosition: {x: 0.0452, y: -2.7, z: 90}
   m_LocalScale: {x: 23.852167, y: 8.80246, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2145742127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145742122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0907a9e695548759cce207f24dda3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.2
+  meshRenderer: {fileID: 2145742124}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
