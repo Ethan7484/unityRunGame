@@ -688,6 +688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 8
   playerRb: {fileID: 1576833446}
+  playerAni: {fileID: 1576833443}
 --- !u!1 &1841117217
 GameObject:
   m_ObjectHideFlags: 0
