@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -33,7 +34,30 @@ public class Player : MonoBehaviour
 
             isGrounded = true;
         }
+
+        
     }
 
-
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Player Hit");
+            
+        }
+        else if (other.gameObject.CompareTag("Food"))
+        {
+            Debug.Log("Food!!!!!");
+            
+            Destroy(other.gameObject);
+            
+        }
+        else if (other.gameObject.CompareTag("Golden"))
+        {
+            Debug.Log("Golden!!!!!");
+            
+            Destroy(other.gameObject);
+            
+        }
+    }
 }

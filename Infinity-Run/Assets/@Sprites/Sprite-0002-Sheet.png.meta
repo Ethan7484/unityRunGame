@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 04eafd5bc5d677e43984cd4c2e91f75b
+guid: 14e8bd74ffe0c4a88acd8e03ecd7a8e0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6116058755252793876
-    second: delivery_0
-  - first:
-      213: -8051424572831433701
-    second: delivery_1
-  - first:
-      213: 6440460199268652629
-    second: delivery_2
+      213: 54620541728290854
+    second: Sprite-0002-Sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,9 +49,9 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 7
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 27
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -128,30 +122,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: delivery_0
+      name: Sprite-0002-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 40
-        height: 38
+        x: 31
+        y: 3
+        width: 54
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,52 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ced4db367f46f1ba0800000000000000
-      internalID: -6116058755252793876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: delivery_1
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 40
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b1cf7806208934090800000000000000
-      internalID: -8051424572831433701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: delivery_2
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 40
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 556137f9d6c116950800000000000000
-      internalID: 6440460199268652629
+      spriteID: 6287723e71d02c000800000000000000
+      internalID: 54620541728290854
       vertices: []
       indices: 
       edges: []
@@ -214,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -224,9 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      delivery_0: -6116058755252793876
-      delivery_1: -8051424572831433701
-      delivery_2: 6440460199268652629
+      Sprite-0002-Sheet_0: 54620541728290854
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
