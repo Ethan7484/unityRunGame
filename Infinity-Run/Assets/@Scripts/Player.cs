@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -12,8 +13,7 @@ public class Player : MonoBehaviour
     private bool _isGrounded = true;
     private bool _isDoubleJump;
 
-    [SerializeField] private int _hp = 3;
-    [SerializeField] private bool _isInvincible;
+    [SerializeField] private bool isInvincible;
 
 
     private void Update()
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetInteger("state", 1);
     }
 
-    private void KillPlayer()
+    public void KillPlayer()
     {
         // 콜라이더, 애니메이터 체크 해제
         playerCollider.enabled = false;
@@ -55,30 +55,25 @@ public class Player : MonoBehaviour
     
     private void Hit()
     {
-        _hp -= 1;
+        GameManager.instance.hp -= 1;
         
-        // Player Kill
-        if (_hp <= 0)
-        {
-            KillPlayer();
-        }
     }
 
     private void Heal()
     {
-        _hp = Mathf.Min(3, _hp + 1);
+        GameManager.instance.hp = Mathf.Min(3, GameManager.instance.hp + 1);
     }
 
     private void StartInvincible()
     {
-        _isInvincible = true;
+        isInvincible = true;
         Invoke("StopInvincible", 5f);
 
     }
 
     private void StopInvincible()
     {
-        _isInvincible = false;
+        isInvincible = false;
     }
 
 private void OnCollisionEnter2D(Collision2D collision)
@@ -100,19 +95,19 @@ private void OnCollisionEnter2D(Collision2D collision)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (!_isInvincible)
+            if (!isInvincible)
             {
                 Hit();
                 Destroy(other.gameObject);
             }
             
-            Debug.Log("Player Hit!!! HP: " + _hp);
+            Debug.Log("Player Hit!!! HP: " + GameManager.instance.hp);
         }
         else if (other.gameObject.CompareTag("Food"))
         {
             Destroy(other.gameObject);
             Heal();
-            Debug.Log("Food!!!!!  HP: " + _hp);
+            Debug.Log("Food!!!!!  HP: " + GameManager.instance.hp);
         }
         else if (other.gameObject.CompareTag("Golden"))
         {
