@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,10 +18,13 @@ public class GameManager : MonoBehaviour
 
     public GameState State = GameState.Intro;
 
+    public float playStartTime;
+
     public int hp = 3;
 
     [Header("References")]
     public GameObject IntroUI;
+    public GameObject DeadUI;
     [Space]
     public GameObject EnemySpawner;
     public GameObject FoodSpawner;
@@ -56,6 +60,8 @@ public class GameManager : MonoBehaviour
             EnemySpawner.SetActive(true);
             FoodSpawner.SetActive(true);
             GoldenSpawner.SetActive(true);
+            
+            playStartTime = Time.time;
         }
 
         if (State == GameState.Playing && hp <= 0)
@@ -65,6 +71,8 @@ public class GameManager : MonoBehaviour
             EnemySpawner.SetActive(false);
             FoodSpawner.SetActive(false);
             GoldenSpawner.SetActive(false);
+            
+            DeadUI.SetActive(true);
             
             State = GameState.Dead;
         }
@@ -76,4 +84,26 @@ public class GameManager : MonoBehaviour
         }
         
     }
+
+    float CalculateScore()
+    {
+        return Time.time - playStartTime;
+    }
+
+    void SaveHighScore()
+    {
+        int score = Mathf.FloorToInt(CalculateScore());
+        int currentHighScore = PlayerPrefs.GetInt("HighScore");
+
+        if (score > currentHighScore)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            PlayerPrefs.Save();
+        }
+        
+        
+        
+    }
+    
+    
 }
