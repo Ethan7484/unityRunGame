@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
     [Space] 
     public Player PlayerScript;
 
+    public TMP_Text scoreText;
+
     private void Awake()
     {
         if (instance == null)
@@ -52,6 +55,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
+        if (State == GameState.Playing)
+        {
+            scoreText.text = "SCORE: " + Mathf.FloorToInt(CalculateScore());
+        }
+        else if (State == GameState.Dead)
+        {
+            scoreText.text = "HIGH SCORE: " + GetHighScore();
+        }
+        
+        
         if (State == GameState.Intro && Input.GetKeyDown(KeyCode.Tab ))
         {
             State = GameState.Playing;
@@ -71,6 +85,8 @@ public class GameManager : MonoBehaviour
             EnemySpawner.SetActive(false);
             FoodSpawner.SetActive(false);
             GoldenSpawner.SetActive(false);
+
+            SaveHighScore();
             
             DeadUI.SetActive(true);
             
@@ -100,9 +116,24 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", score);
             PlayerPrefs.Save();
         }
+    }
+
+    int GetHighScore()
+    {
+        return PlayerPrefs.GetInt("HighScore");
+    }
+
+    public float CalculateGameSpeed()
+    {
+        if (State != GameState.Playing)
+        {
+            return 5f;
+        }
         
-        
-        
+        float speed  = 8f + (0.5f * MathF.Floor(CalculateScore() / 10f));    // 1초에 0.5f 씩 증가
+
+        return Mathf.Min(speed, 30f);
+
     }
     
     

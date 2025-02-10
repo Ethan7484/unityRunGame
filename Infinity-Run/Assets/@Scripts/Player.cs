@@ -9,13 +9,13 @@ public class Player : MonoBehaviour
     [Header("References")] public Rigidbody2D playerRb;
     public Animator playerAnimator;
     public BoxCollider2D playerCollider;
-
+    public GameObject[] buildings;
+    
     private bool _isGrounded = true;
     private bool _isDoubleJump;
 
     [SerializeField] private bool isInvincible;
-
-
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
     private void Hit()
     {
         GameManager.instance.hp -= 1;
-        
     }
 
     private void Heal()
@@ -68,7 +67,6 @@ public class Player : MonoBehaviour
     {
         isInvincible = true;
         Invoke("StopInvincible", 5f);
-
     }
 
     private void StopInvincible()
@@ -116,4 +114,5 @@ private void OnCollisionEnter2D(Collision2D collision)
             Debug.Log("Golden!!!!!");
         }
     }
+
 }

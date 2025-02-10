@@ -6,8 +6,8 @@ public class Mover : MonoBehaviour
     [Header("Settings")] 
     public float moveSpeed = 1f;
 
-    private void Update()
+    public virtual void Update()
     {
-        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+        transform.position += Vector3.left * GameManager.instance.CalculateGameSpeed() * moveSpeed * Time.deltaTime;
     }
 }
