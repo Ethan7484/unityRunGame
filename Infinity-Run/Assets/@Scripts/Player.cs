@@ -9,38 +9,45 @@ public class Player : MonoBehaviour
     [Header("References")] public Rigidbody2D playerRb;
     public Animator playerAnimator;
     public BoxCollider2D playerCollider;
-    public GameObject[] buildings;
     
     private bool _isGrounded = true;
-    private bool _isDoubleJump;
+    private bool _isDoubleJump = false;
 
     [SerializeField] private bool isInvincible;
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        //if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        //{
+        //    Jump();
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Space) && _isDoubleJump)
+        //{
+        //    DoubleJump();
+        //}
+
+    }
+
+    public void Jump()
+    {
+        if (_isGrounded)
         {
-            Jump();
+            playerRb.AddForceY(jumpForce, ForceMode2D.Impulse);
+            _isDoubleJump = true;
+            _isGrounded = false;
+            playerAnimator.SetInteger("state", 1);
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && _isDoubleJump)
+        else if(_isDoubleJump)
         {
             DoubleJump();
         }
     }
 
-    private void Jump()
-    {
-        playerRb.AddForceY(jumpForce, ForceMode2D.Impulse);
-        _isGrounded = false;
-        _isDoubleJump = true;
-        playerAnimator.SetInteger("state", 1);
-    }
-
-    private void DoubleJump()
+    public void DoubleJump()
     {
         playerRb.AddForceY(jumpForce * .8f, ForceMode2D.Impulse);
         _isDoubleJump = false;
-        playerAnimator.SetInteger("state", 1);
+        playerAnimator.SetInteger("state", 1);        
     }
 
     public void KillPlayer()

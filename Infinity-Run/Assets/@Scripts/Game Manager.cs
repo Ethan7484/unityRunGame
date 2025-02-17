@@ -24,37 +24,53 @@ public class GameManager : MonoBehaviour
     public int hp = 3;
 
     [Header("References")]
-    public GameObject IntroUI;
-    public GameObject DeadUI;
+    public GameObject introUI;
+    public GameObject deadUI;
     [Space]
-    public GameObject EnemySpawner;
-    public GameObject FoodSpawner;
-    public GameObject GoldenSpawner;
+    public GameObject buildingSpawner;
+    public GameObject enemySpawner;
+    public GameObject foodSpawner;
+    public GameObject goldenSpawner;
     [Space] 
-    public Player PlayerScript;
-
+    public Player playerScript;
     public TMP_Text scoreText;
+
+    [Header("Buttons")]
+    public GameObject startButton;
+    public GameObject restartButton;
+    public GameObject jumpButton;
+
+
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-        }
-        
+        }        
     }
 
     private void Start()
     {
-        IntroUI.SetActive(true);
-        
-        EnemySpawner.SetActive(false);
-        FoodSpawner.SetActive(false);
-        GoldenSpawner.SetActive(false);
+        introUI.SetActive(true);
+
+        buildingSpawner.SetActive(false);
+        enemySpawner.SetActive(false);
+        foodSpawner.SetActive(false);
+        goldenSpawner.SetActive(false);
+        restartButton.SetActive(false);
+
+        startButton.SetActive(true);
+        jumpButton.SetActive(false);
     }
 
     private void Update()
     {
+
+        if (State == GameState.Intro)
+        {
+            scoreText.text = "HIGH SCORE: " + GetHighScore();
+        }
 
         if (State == GameState.Playing)
         {
@@ -63,42 +79,57 @@ public class GameManager : MonoBehaviour
         else if (State == GameState.Dead)
         {
             scoreText.text = "HIGH SCORE: " + GetHighScore();
-        }
-        
-        
-        if (State == GameState.Intro && Input.GetKeyDown(KeyCode.Tab ))
-        {
-            State = GameState.Playing;
-            IntroUI.SetActive(false);
-            
-            EnemySpawner.SetActive(true);
-            FoodSpawner.SetActive(true);
-            GoldenSpawner.SetActive(true);
-            
-            playStartTime = Time.time;
-        }
+        }        
+
 
         if (State == GameState.Playing && hp <= 0)
         {
-            PlayerScript.KillPlayer();
-
-            EnemySpawner.SetActive(false);
-            FoodSpawner.SetActive(false);
-            GoldenSpawner.SetActive(false);
-
-            SaveHighScore();
-            
-            DeadUI.SetActive(true);
-            
-            State = GameState.Dead;
+            Dead();
         }
-        
-        // 게임 오버 이후에 씬 로드
-        if (State == GameState.Dead && Input.GetKeyDown(KeyCode.Tab))
-        {
-            SceneManager.LoadScene("main");
-        }
-        
+    }
+
+    private void Dead()
+    {
+        playerScript.KillPlayer();
+
+        buildingSpawner.SetActive(false);
+        enemySpawner.SetActive(false);
+        foodSpawner.SetActive(false);
+        goldenSpawner.SetActive(false);
+
+        jumpButton.SetActive(false);
+
+        SaveHighScore();
+
+        deadUI.SetActive(true);
+
+        restartButton.SetActive(true);
+        startButton.SetActive(false);
+
+        State = GameState.Dead;
+    }
+
+    public void RestartButton()
+    {
+        restartButton.SetActive(false);
+        startButton.SetActive(true);
+        SceneManager.LoadScene("main");
+    }
+
+    public void StartButton()
+    {
+        State = GameState.Playing;
+        introUI.SetActive(false);
+
+        startButton.SetActive(false);
+        jumpButton.SetActive(true);
+
+        buildingSpawner.SetActive(true);
+        enemySpawner.SetActive(true);
+        foodSpawner.SetActive(true);
+        goldenSpawner.SetActive(true);
+
+        playStartTime = Time.time;
     }
 
     float CalculateScore()
