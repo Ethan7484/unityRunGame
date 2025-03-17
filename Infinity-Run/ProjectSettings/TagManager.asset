@@ -7,11 +7,12 @@ TagManager:
   - Enemy
   - Food
   - Golden
+  - Planet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
