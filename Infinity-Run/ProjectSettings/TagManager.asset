@@ -8,6 +8,8 @@ TagManager:
   - Food
   - Golden
   - Planet
+  - Planet1
+  - Planet2
   layers:
   - Default
   - TransparentFX

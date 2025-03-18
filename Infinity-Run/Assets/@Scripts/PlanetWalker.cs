@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlanetWalker : MonoBehaviour
@@ -7,6 +9,7 @@ public class PlanetWalker : MonoBehaviour
     [Header("Planet Settings")]
     [SerializeField] private Transform planet0; // 첫 번째 행성
     [SerializeField] private Transform planet1; // 두 번째 행성
+    [SerializeField] private Transform planet2; // 세 번째 행성y
     [SerializeField] private float gravityStrength = 50f;
     [SerializeField] private LayerMask planetLayer;
 
@@ -76,7 +79,6 @@ public class PlanetWalker : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentPlanet);
 
         // 행성 간 점프 중에는 입력 무시
         if (isJumpingBetweenPlanets) return;
@@ -90,9 +92,22 @@ public class PlanetWalker : MonoBehaviour
         );
 
         // 점프 입력 처리
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        //if (Input.GetButtonDown("Jump") && isGrounded)
+        //{
+        //    JumpToOtherPlanet();
+        //}
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            JumpToOtherPlanet();
+            Debug.Log("Up Arrow key was pressed.");
+            UpToPlanet();
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Debug.Log("Down Arrow key was pressed.");
+            DownToPlanet();
         }
 
         // 캐릭터 시각적 요소 좌우 반전
@@ -101,6 +116,38 @@ public class PlanetWalker : MonoBehaviour
             Vector3 newScale = characterVisual.localScale;
             newScale.x = moveInput > 0 ? Mathf.Abs(newScale.x) : -Mathf.Abs(newScale.x);
             characterVisual.localScale = newScale;
+        }
+    }
+
+    private void DownToPlanet()
+    {
+        if (currentPlanet == planet2)
+        {
+            planet2.GetComponent<CircleCollider2D>().enabled = false;
+        }
+        else if (currentPlanet == planet1)
+        {
+            planet1.GetComponent<CircleCollider2D>().enabled = false;
+        }
+        else if (currentPlanet == planet0)
+        {
+            return;
+        }
+    }
+
+    private void UpToPlanet()
+    {
+        if (currentPlanet == planet0)
+        {
+            planet1.GetComponent<CircleCollider2D>().enabled = true;
+        }
+        else if (currentPlanet == planet1)
+        {
+            planet2.GetComponent<CircleCollider2D>().enabled = true;
+        }
+        else if (currentPlanet == planet2)
+        {
+            return;
         }
     }
 
@@ -167,24 +214,52 @@ public class PlanetWalker : MonoBehaviour
     private void JumpToOtherPlanet()
     {
         // 다른 행성으로 이동
-        Transform targetPlanet = (currentPlanet == planet0) ? planet1 : planet0;
-
-        if (targetPlanet == planet1)
+        
+        if (currentPlanet == planet0)
         {
             planet1.GetComponent<CircleCollider2D>().enabled = true;
-            currentPlanet = planet1;
-
         }
-        else if (currentPlanet = planet0)
+        else if (currentPlanet == planet1)
+        {
+            planet2.GetComponent<CircleCollider2D>().enabled = true;
+        }
+        else if (currentPlanet == planet2)
         {
             planet1.GetComponent<CircleCollider2D>().enabled = false;
-            currentPlanet = planet0;
-        }    
+            planet2.GetComponent<CircleCollider2D>().enabled = false;
+        }
 
 
         // 코루틴으로 행성 간 이동 시작
         // StartCoroutine(SmoothPlanetJump(targetPlanet));
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Planet"))
+        {
+            // 행성에 닿으면 현재 행성으로 설정
+            currentPlanet = planet0;
+            Debug.Log(currentPlanet.name);
+            moveSpeed = collision.gameObject.GetComponent<PlanetInfo>()._rotationSpeed;
+        }
+        else if (collision.gameObject.CompareTag("Planet1"))
+        {
+            // 행성에 닿으면 현재 행성으로 설정
+            currentPlanet = planet1;
+            Debug.Log(currentPlanet.name);
+            moveSpeed = collision.gameObject.GetComponent<PlanetInfo>()._rotationSpeed;
+        }
+        else if (collision.gameObject.CompareTag("Planet2"))
+        {
+            // 점프 중 땅에 닿으면 점프 종료
+            currentPlanet = planet2;
+            Debug.Log(currentPlanet.name);
+            moveSpeed = collision.gameObject.GetComponent<PlanetInfo>()._rotationSpeed;
+        }
+    }
+
+   
 
     //private IEnumerator SmoothPlanetJump(Transform targetPlanet)
     //{
