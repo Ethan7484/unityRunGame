@@ -10,6 +10,7 @@ TagManager:
   - Planet
   - Planet1
   - Planet2
+  - Planet3
   layers:
   - Default
   - TransparentFX
