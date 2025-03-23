@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlanetWalker : MonoBehaviour
@@ -150,6 +149,8 @@ public class PlanetWalker : MonoBehaviour
     {
         float angle = Mathf.Atan2(gravityUp.y, gravityUp.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        Debug.Log(angle);
 
     }
 
